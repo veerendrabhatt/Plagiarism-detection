@@ -18,7 +18,7 @@ This project detects plagiarism in text documents by comparing similarities betw
 ## 📂 Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/plagiarism-detection.git
+   git clone https://github.com/veerendrabhatt/plagiarism-detection.git
    ```
 2. Navigate to the project directory:
    ```sh
