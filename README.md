@@ -32,7 +32,7 @@ This project detects plagiarism in text documents by comparing similarities betw
 ## 🖥️ Usage
 Run the script to check for plagiarism:
 ```sh
-python main.py
+python app.py
 ```
 
 If using a web interface:
