@@ -39,6 +39,3 @@ If using a web interface:
 ```sh
 flask run
 ```
-
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
