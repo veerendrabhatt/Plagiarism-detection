@@ -1,74 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plagiarism Detector</title>
+    <style>
+        /* Set background image (REPLACE WITH YOUR LINK) */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpaperaccess.com/full/1261646.jpg') no-repeat center center/cover;
+            color: #00ffea;
+        }
+        /* Overlay effect for better readability */
+        
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2;
+        }
+        
+        form {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+            width: 50%;
+        }
+        
+        textarea {
+            width: 90%;
+            height: 120px;
+            margin-top: 10px;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ffea;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+        }
+        
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff00ff, #ff0099);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff0099;
+            transition: 0.3s ease-in-out;
+        }
+        
+        button:hover {
+            background: linear-gradient(45deg, #ff0099, #ff00ff);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff0099;
+            transform: scale(1.05);
+        }
+        
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #00ffea;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let text = document.querySelector('textarea[name="text"]').value.trim();
+            let reference = document.querySelector('textarea[name="reference"]').value.trim();
+            if (text === "" || reference === "") {
+                alert("Both fields must be filled out!");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
 
-.container {
-    width: 50%;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-textarea {
-    width: 90%;
-    height: 100px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.result {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #e9ecef;
-}
-
-</style>
 <body>
-    <div class="container">
+    <div class="overlay">
         <h1>Plagiarism Detector</h1>
-        <form action="/detect" method="post">
-            <textarea name="text" placeholder="Enter text here..." required></textarea>
-            <button type="submit">Check for Plagiarism</button>
+        <form action="/detect" method="post" onsubmit="return validateForm()">
+            <textarea name="text" placeholder="Enter text to check for plagiarism..."></textarea><br>
+            <textarea name="reference" placeholder="Enter reference text..."></textarea><br>
+            <button type="submit">Check</button>
         </form>
+
         {% if result %}
-            <div class="result">{{ result }}</div>
+        <div class="result">Result: {{ result }}</div>
+        <!--div class="result">BLEU Score: {{ bleu_score }}</div>
+        <div class="result">Cosine Similarity: {{ cosine_sim }}</div-->
         {% endif %}
     </div>
 </body>
+
 </html>
